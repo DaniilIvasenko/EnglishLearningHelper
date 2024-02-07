@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa37a709-6b15-48fc-b789-91e89357a78e" name="Changes" comment="init">
-      <change afterPath="$PROJECT_DIR$/.configs/LearningDB.run.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/controllers/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/controllers/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/controllers/iMainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/exceptions/HardWordPoolOverflowException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/model/data/HardWord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/model/data/Word.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/repository/HardWordRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/repository/WordsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/repository/iHardWordRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/repository/iWordsRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/services/test/TestCreationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/services/words/HardWordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/services/words/WordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/view/consoleView/ConsoleView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/view/consoleView/mainFrame/iView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/view/consoleView/mainFrame/mainView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/view/consoleView/testsView/TestView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/eng/view/consoleView/testsView/iTestView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/eng/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/eng/Main.java" afterDir="false" />
-    </list>
+    <list default="true" id="fa37a709-6b15-48fc-b789-91e89357a78e" name="Changes" comment="HardWordPoolOverflowException add" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,14 +35,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Программирование/GB/java/java junior/DataBases/DB_HW&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "D:/Программирование/GB/java/java junior/DataBases/DB_HW",
+    "settings.editor.selected.configurable": "CodeWithMe"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="eng.Main" />
@@ -109,7 +84,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706951831831</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="HardWordPoolOverflowException add">
+      <created>1707334760430</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707334760430</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,7 +107,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="HardWordPoolOverflowException add" />
+    <option name="LAST_COMMIT_MESSAGE" value="HardWordPoolOverflowException add" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
