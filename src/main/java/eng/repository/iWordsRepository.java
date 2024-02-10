@@ -26,14 +26,24 @@ public interface iWordsRepository {
 
     /**
      * найти все слова у которых поле isRemembered = false
+     *
      * @return список найденных слов
      */
-    List<Word> findAllNotRemembered();
+    List<Word> findAll();
 
 
     /**
      * удаление слова
+     *
      * @param word
      */
     void deleteWord(Word word);
+
+
+    /**
+     * изменение слова в БД
+     *
+     * @param word - слово для изменения в бд
+     */
+    void updateWord(Word word);
 }

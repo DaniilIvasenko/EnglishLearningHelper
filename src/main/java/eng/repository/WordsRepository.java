@@ -1,7 +1,7 @@
 package eng.repository;
 
 import eng.model.data.Word;
-import org.hibernate.NonUniqueResultException;
+import eng.model.data.WordTranslations;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,6 +17,7 @@ public class WordsRepository implements iWordsRepository{
         this.sessionFactory = new Configuration()
                 .configure("Hibernate.cfg.xml")
                 .addAnnotatedClass(Word.class)
+                .addAnnotatedClass(WordTranslations.class)
                 .buildSessionFactory();
     }
 
@@ -63,11 +64,12 @@ public class WordsRepository implements iWordsRepository{
      * найти все слова у которых поле isRemembered = false
      * @return список найденных слов
      */
-    public List<Word> findAllNotRemembered(){
+    @Override
+    public List<Word> findAll(){
         List<Word> notRememberedWords;
         try (Session session = sessionFactory.getCurrentSession()) {
             Transaction transaction = session.beginTransaction();
-            notRememberedWords =  session.createQuery("from Word where isRemembered = 0", Word.class).list();
+            notRememberedWords =  session.createQuery("from Word ", Word.class).list();
             transaction.commit();
         }
         return notRememberedWords;
@@ -84,6 +86,19 @@ public class WordsRepository implements iWordsRepository{
         Transaction transaction = session.beginTransaction();
         session.delete(word);
         transaction.commit();
+        }
+    }
+
+    /**
+     * изменение слова в БД
+     * @param word - слово для изменения в бд
+     */
+    @Override
+    public void updateWord(Word word) {
+        try (Session session = sessionFactory.getCurrentSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(word);
+            transaction.commit();
         }
     }
 }

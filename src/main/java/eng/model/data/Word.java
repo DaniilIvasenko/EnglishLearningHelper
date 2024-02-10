@@ -5,22 +5,26 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
+@Table(name = "words")
 public class Word {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private  String word;
-    private  String wordTranslation ;
+    @Column(name = "wordTranslation")
+    private  String wordMainTranslation ;
+    @OneToMany(mappedBy = "word", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<WordTranslations> additionalTranslations;
     private String wordDetail;
 
     private boolean isRemembered;
-    @Temporal(TemporalType.DATE)
-    private Date dateOfCreation;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "word")
+
+    @OneToOne(mappedBy = "word", cascade = CascadeType.ALL)
     HardWord hardWord;
-
 }

@@ -3,6 +3,7 @@ package eng.controllers;
 import eng.exceptions.HardWordPoolOverflowException;
 import eng.model.data.HardWord;
 import eng.model.data.Word;
+import eng.model.data.WordTranslations;
 import eng.repository.HardWordRepository;
 import eng.repository.WordsRepository;
 import eng.services.words.HardWordService;
@@ -37,6 +38,7 @@ public class MainController  implements iMainController{
                 case 1:
                     Word newWord = view.createNewWord();
                     wordService.saveWord(newWord);
+
                     try {
                         hardWordService.saveWord(hardWordService.hardWordBuilder(newWord));
                     }catch (HardWordPoolOverflowException e){
@@ -47,7 +49,7 @@ public class MainController  implements iMainController{
 
                 // список всех слов
                 case 2:
-                    List<Word> words = wordService.findAllNotRemembered();
+                    List<Word> words = wordService.findAll();
                     view.showWordsList(words);
                     break;
 
@@ -59,7 +61,14 @@ public class MainController  implements iMainController{
 
                     // передача управления контроллеру тестов
                 case 4:
-                    testController.start(hardWordService.findAllHardWords());
+                    List<HardWord> hardWordsAfterTestComplete = testController.start(hardWordService.findAllHardWords());
+                    List<HardWord> rememberedWords = hardWordService.balanceHardWordList(hardWordsAfterTestComplete);
+                    wordService.updateRememberedWords(rememberedWords);
+                    break;
+
+                case 9:
+                    // todo добавить отправку списка слов для изучения при завершении работы программы
+                    System.exit(0);
                     break;
             }
         }

@@ -1,9 +1,13 @@
 package eng.view.consoleView.testsView;
 
-import eng.view.consoleView.mainFrame.iView;
+import eng.model.data.HardWord;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class TestView implements iTestView {
 
@@ -14,7 +18,7 @@ public class TestView implements iTestView {
             System.out.println("\nМеню тестов:\n-----------------------------");
             System.out.println("Выберите раздел: \n" +
                     "1. Начать новый тест\n" +
-                    "2. Завершить работу");
+                    "2. Назад в главное меню");
             try {
                 Scanner scanner = new Scanner(System.in);
                 userChoice = scanner.nextInt();
@@ -24,6 +28,39 @@ public class TestView implements iTestView {
         }while (userChoice<0);
 
         return userChoice;
+    }
+
+
+    @Override
+    public List<String> startTest(List<HardWord> wordsInTest) {
+        List<String> userAnswers = new ArrayList<>();
+        System.out.println("Тест начался\n======================");
+        System.out.println("Введите перевод слова, в случае если не знаете оставьте поле пустым:");
+        int counter = 1;
+        for (HardWord currentWord : wordsInTest) {
+            StringBuilder stringBuilder = new StringBuilder((counter++) + ". ");
+            stringBuilder.append(currentWord.getWord().getWordMainTranslation());
+            String translations = currentWord.getWord().getAdditionalTranslations().stream()
+                    .map(x->x.getTranslation()).collect(Collectors.joining(", "));
+            if (translations.length()!=0){
+                stringBuilder.append(" ("+translations+")");
+            }
+            stringBuilder.append(" - ");
+
+
+            System.out.print(stringBuilder);
+
+            Scanner scanner= new Scanner(System.in);
+            String userInput = scanner.nextLine().trim().toLowerCase();
+
+            if(currentWord.getWord().getWord().toLowerCase().equals(userInput)){
+                System.out.println("{+}");
+            }else {
+                System.out.println("{Ошибка! правильный ответ: '" + currentWord.getWord().getWord()+"'}");
+            }
+            userAnswers.add(userInput);
+        }
+        return userAnswers;
     }
 
 
@@ -42,5 +79,13 @@ public class TestView implements iTestView {
             System.out.print("*");
         }
         System.out.println();
+    }
+
+
+    @Override
+    public void showTestResult(String result) {
+        System.out.println("----------------------------------------------------");
+        System.out.println("Тест завершен!\n==============");
+        System.out.println(result);
     }
 }

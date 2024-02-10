@@ -39,8 +39,8 @@ public class WordService {
      * поиск в БД слов с полем isRemembered = false
      * @return список найденных слов
      */
-    public List<Word> findAllNotRemembered(){
-        return wordsRepository.findAllNotRemembered();
+    public List<Word> findAll(){
+        return wordsRepository.findAll();
     }
 
 
@@ -55,5 +55,18 @@ public class WordService {
         }
     }
 
+
+    /**
+     * устанавливает флаг isRemembered для всех слов из списка в БД -> true
+     * @param rememberedHardWords список у которых надо изменить флаг isRemembered
+     */
+    public void updateRememberedWords(List<HardWord> rememberedHardWords){
+        rememberedHardWords.stream().forEach(x-> {
+            Word wordToUpdate = x.getWord();
+            wordToUpdate.setHardWord(null);
+            wordToUpdate.setRemembered(true);
+            wordsRepository.updateWord(wordToUpdate);
+        });
+     }
 
 }

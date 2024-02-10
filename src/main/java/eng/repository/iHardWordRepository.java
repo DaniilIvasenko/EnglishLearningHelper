@@ -24,8 +24,15 @@ public interface iHardWordRepository {
     /**
      * удаление сложного слова по значению
      *
-     * @param word - тестовое значение слова
+     * @param word слово которое надо удалить
      */
-    void deleteHardWord(String word);
+    void deleteHardWord(HardWord word);
 
+
+    /**
+     * обновление сложного слова в БД
+     * @param hardWord слово которое должно быть изменено
+     */
+    void updateHardWord(HardWord hardWord);
 }
+

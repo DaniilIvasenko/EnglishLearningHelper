@@ -30,6 +30,7 @@
         <!-- Mention annotated entity class -->
         <mapping class="eng.model.data.Word"/>
         <mapping class="eng.model.data.HardWord"/>
+        <mapping class="eng.model.data.WordTranslations"/>
 
     </session-factory>
 </hibernate-configuration>

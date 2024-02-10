@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,10 +24,12 @@ public class HardWord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "word_id")
     private Word word;
+
     private  int repeatCounter;
+
 
 
 }

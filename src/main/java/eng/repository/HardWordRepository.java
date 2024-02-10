@@ -45,9 +45,27 @@ public class HardWordRepository implements iHardWordRepository {
 
     /**
      * удаление сложного слова по значению
-     * @param word - тестовое значение слова
+     * @param word тестовое значение слова
      */
-    public  void  deleteHardWord(String word){
+    public  void  deleteHardWord(HardWord word){
+        try (Session session = sessionFactory.getCurrentSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.delete(word);
+            transaction.commit();
+        }
+    }
 
+
+    /**
+     * обновление сложного слова в БД
+     * @param hardWord слово которое должно быть изменено
+     */
+    @Override
+    public void updateHardWord(HardWord hardWord) {
+        try (Session session = sessionFactory.getCurrentSession()) {
+            Transaction transaction = session.beginTransaction();
+            session.update(hardWord);
+            transaction.commit();
+        }
     }
 }
