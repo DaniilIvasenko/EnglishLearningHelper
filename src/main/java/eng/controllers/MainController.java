@@ -1,6 +1,7 @@
 package eng.controllers;
 
 import eng.exceptions.HardWordPoolOverflowException;
+import eng.model.data.HardWord;
 import eng.model.data.Word;
 import eng.repository.HardWordRepository;
 import eng.repository.WordsRepository;
@@ -8,7 +9,6 @@ import eng.services.words.HardWordService;
 import eng.services.words.WordService;
 import eng.view.consoleView.mainFrame.mainView;
 import eng.view.consoleView.mainFrame.iView;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.List;
 
@@ -29,6 +29,8 @@ public class MainController  implements iMainController{
      * запуск программы
      */
     public void run(){
+        System.out.println("******************************\n" +
+                "Добро пожаловать!!!\n******************************\n");
         while (true){
             int userChoice = view.showMainFrame();
             switch (userChoice){
@@ -39,18 +41,26 @@ public class MainController  implements iMainController{
                         hardWordService.saveWord(hardWordService.hardWordBuilder(newWord));
                     }catch (HardWordPoolOverflowException e){
                         wordService.deleteWord(newWord.getWord());
-                        System.out.println("переполнение пула ");
-                        // todo придумать как отобразить пользователю ошибку о переполнении пула сложных слов
+                        view.showErrorMessage("Переполнение пула сложных слов, пройдите тест чтобы добавлять новые слова");
                     }
                     break;
 
+                // список всех слов
                 case 2:
                     List<Word> words = wordService.findAllNotRemembered();
                     view.showWordsList(words);
                     break;
 
+                    // список слов для изучения
                 case 3:
+                    List<HardWord> hardWords = hardWordService.findAllHardWords();
+                    view.showWordsList(hardWordService.convertToWordList(hardWords));
+                    break;
+
+                    // передача управления контроллеру тестов
+                case 4:
                     testController.start(hardWordService.findAllHardWords());
+                    break;
             }
         }
 

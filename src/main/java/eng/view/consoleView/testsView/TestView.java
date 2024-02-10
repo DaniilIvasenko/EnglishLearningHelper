@@ -1,11 +1,11 @@
 package eng.view.consoleView.testsView;
 
-import eng.view.consoleView.ConsoleView;
+import eng.view.consoleView.mainFrame.iView;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class TestView extends ConsoleView implements iTestView{
+public class TestView implements iTestView {
 
     @Override
     public int showMenu() {
@@ -24,5 +24,23 @@ public class TestView extends ConsoleView implements iTestView{
         }while (userChoice<0);
 
         return userChoice;
+    }
+
+
+    /**
+     * отобразить в консоли сообщение об ошибке
+     * @param message - текст сообщения
+     */
+    public void showErrorMessage(String message){
+        message = "** Ошибка! "+ message+" **";
+        for (int i = 0; i < message.length(); i++) {
+            System.out.print("*");
+        }
+        System.out.println();
+        System.out.println(message);
+        for (int i = 0; i < message.length(); i++) {
+            System.out.print("*");
+        }
+        System.out.println();
     }
 }

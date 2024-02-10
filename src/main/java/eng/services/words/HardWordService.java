@@ -7,7 +7,9 @@ import eng.repository.HardWordRepository;
 import eng.repository.iHardWordRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class HardWordService {
@@ -59,6 +61,16 @@ public class HardWordService {
      */
     private boolean wordPollIsFull(){
         return hardWordRepository.findAllHardWords().stream().count()>=hardWordPool;
+    }
+
+
+    /**
+     * преобразование списка сложных слов к списку обычных слов
+     * @param hardWords  сложное слово
+     * @return список простых слов
+     */
+    public List<Word> convertToWordList(List<HardWord> hardWords){
+        return  hardWords.stream().map(x->x.getWord()).collect(Collectors.toList());
     }
 
 }

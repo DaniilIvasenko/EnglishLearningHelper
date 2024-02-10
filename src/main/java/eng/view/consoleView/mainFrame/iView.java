@@ -22,4 +22,10 @@ public interface iView {
     int showMainFrame();
 
 
+    /**
+     * отобразить в консоли сообщение об ошибке
+     * @param message - текст сообщения
+     */
+    void showErrorMessage(String message);
+
 }
