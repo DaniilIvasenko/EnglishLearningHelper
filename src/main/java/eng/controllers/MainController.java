@@ -1,22 +1,29 @@
 package eng.controllers;
 
+import eng.decorator.WordListDecorator;
 import eng.exceptions.HardWordPoolOverflowException;
 import eng.model.data.HardWord;
 import eng.model.data.Word;
 import eng.model.data.WordTranslations;
 import eng.repository.HardWordRepository;
 import eng.repository.WordsRepository;
+import eng.services.MailService;
 import eng.services.words.HardWordService;
 import eng.services.words.WordService;
 import eng.view.consoleView.mainFrame.mainView;
 import eng.view.consoleView.mainFrame.iView;
 
+import javax.swing.text.DateFormatter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainController  implements iMainController{
     private final WordService wordService ;
     private final HardWordService hardWordService;
     private final TestController testController;
+    private final MailService mailService;
     private  final iView view;
 
     public MainController() {
@@ -24,6 +31,7 @@ public class MainController  implements iMainController{
         this.view = new mainView();
         this.testController = new TestController();
         this.hardWordService = new HardWordService(new HardWordRepository());
+        this.mailService = new MailService();
     }
 
     /**
@@ -67,7 +75,11 @@ public class MainController  implements iMainController{
                     break;
 
                 case 9:
-                    // todo добавить отправку списка слов для изучения при завершении работы программы
+                    List<Word> wordsToLearning = hardWordService.findAllHardWords().stream().map(x->x.getWord()).collect(Collectors.toList());
+                    String message = WordListDecorator.wordListToString(wordsToLearning);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                    String title = "Последний список слов от: "+ LocalDateTime.now().format(formatter);
+                    mailService.sendEmailMessage(title, message);
                     System.exit(0);
                     break;
             }

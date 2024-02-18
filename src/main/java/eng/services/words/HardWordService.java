@@ -20,7 +20,7 @@ public class HardWordService {
     /**
      * количество слов, которые могут одновременно находиться в списке сложных слов
      */
-    private int hardWordPool = 20;
+    private int hardWordPool = 40;
 
     /**
      * добавления сложного слова в таблицу

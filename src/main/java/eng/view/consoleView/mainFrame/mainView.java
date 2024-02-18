@@ -1,5 +1,6 @@
 package eng.view.consoleView.mainFrame;
 
+import eng.decorator.WordListDecorator;
 import eng.model.data.Word;
 import eng.model.data.WordTranslations;
 
@@ -41,7 +42,7 @@ public class mainView implements iView {
 
         System.out.print("Введите дополнительные варианты перевода(через запятую):\t");
         String wordAdditionalTranslations = scanner.nextLine().trim();
-        if (wordAdditionalTranslations.length()!=0){
+        if (wordAdditionalTranslations.length() != 0) {
             List<WordTranslations> translations;
             translations = Arrays.stream(wordAdditionalTranslations.split(","))
                     .map(x -> new WordTranslations(newWord, x.trim()))
@@ -61,16 +62,8 @@ public class mainView implements iView {
     @Override
     public void showWordsList(List<Word> words) {
         System.out.println("\nСписок слов:\n--------------------------------------");
-        int counter = 1;
-        for (Word word : words) {
-            StringBuilder translations = new StringBuilder(word.getWordMainTranslation()+", ");
-            word.getAdditionalTranslations().stream().forEach(x->translations.append(x.getTranslation()+", "));
-            translations.delete(translations.length()-2, translations.length());
-            System.out.printf("%d. %s - %s (%s)\n",
-                    counter++, word.getWord(),
-                    translations,
-                    word.getWordDetail());
-        }
+        System.out.println(WordListDecorator.wordListToString(words));
+
     }
 
 

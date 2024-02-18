@@ -53,7 +53,7 @@ public class WordsRepository implements iWordsRepository{
                         .getSingleResult();
             }catch (NoResultException e){
                 word = null;
-            }//todo обработать вариант когда приходят не уникальные значения, или удалить это исключение NonUniqueResultException\
+            }
             transaction.commit();
         }
         return word;

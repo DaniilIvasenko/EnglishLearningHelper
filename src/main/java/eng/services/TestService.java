@@ -27,8 +27,8 @@ public class TestService {
 
     /**
      * проверить тест и сформировать строку с результатами
-     * @param answers
-     * @return  с ключами "количество ошибок", ""
+     * @param answers ответы пользователя
+     * @return  текстовый отчет о результатах теста
      */
     public String getTestResults(List<String> answers){
         List<HardWord> failList = checkAnswers(answers);
